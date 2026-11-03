@@ -300,12 +300,12 @@ const Projects = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.05 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-between items-end mb-8"
+          className="flex justify-between items-end mb-6 sm:mb-8"
         >
           <div>
-            <h2 className="heading-lg mb-4">Key Projects & Platforms</h2>
+            <h2 className="heading-lg mb-3 sm:mb-4">Key Projects & Platforms</h2>
             <p className="text-slate-600 max-w-2xl leading-relaxed">
               Specialized platforms and infrastructure solutions delivered end to end, grouped by domain
               across network, security and IoT. Click any card for full details.
@@ -313,12 +313,12 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           {projectGroups.map((group) => {
             const groupProjects = projects.filter((project) => project.group === group.id);
             return (
               <div key={group.id} id={`projects-${group.id}`} className="scroll-mt-24">
-                <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
                   <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border shadow-sm ${group.iconWrap}`}>
                     {group.icon}
                   </div>
@@ -330,7 +330,7 @@ const Projects = () => {
                     {groupProjects.length} {groupProjects.length === 1 ? 'project' : 'projects'}
                   </span>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                   {groupProjects.map((project, index) => (
             <motion.button
               key={index}
@@ -343,25 +343,11 @@ const Projects = () => {
               className="glass-card overflow-hidden group text-left cursor-pointer hover:border-indigo-500/30"
             >
               <div className="relative aspect-video overflow-hidden">
-                {project.images ? (
-                  <div className="grid h-full grid-cols-3 gap-px bg-slate-200">
-                    {project.images.map((src, idx) => (
-                      <div key={idx} className="overflow-hidden bg-slate-50">
-                        <img 
-                          src={src} 
-                          alt={`${project.title} ${idx + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                )}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40" />
                 <div className="absolute top-4 left-4 p-3 bg-white/95 backdrop-blur-md rounded-xl border border-slate-200 shadow-lg group-hover:scale-110 transition-transform">
                   {project.icon}
@@ -426,42 +412,20 @@ const Projects = () => {
                 <X size={20} />
               </button>
 
-              {activeProject.images ? (
-                <div className="overflow-hidden rounded-t-2xl border-b border-slate-200 bg-slate-50">
-                  <div className="grid grid-cols-3 gap-px bg-slate-200">
-                    {activeProject.images.map((src, idx) => (
-                      <div key={idx} className="aspect-[4/3] overflow-hidden bg-white">
-                        <img 
-                          src={src} 
-                          alt={`${activeProject.title} ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))}
+              <div className="relative aspect-[21/9] overflow-hidden rounded-t-2xl">
+                <img
+                  src={activeProject.image}
+                  alt={activeProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60" />
+                <div className="absolute bottom-6 left-6 flex items-center gap-4 sm:bottom-8 sm:left-10 sm:gap-6">
+                  <div className="p-3 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-2xl sm:p-4">
+                    {activeProject.icon}
                   </div>
-                  <div className="flex items-center gap-5 px-10 py-6">
-                    <div className="p-4 bg-white backdrop-blur-md rounded-2xl border border-slate-200 shadow-lg">
-                      {activeProject.icon}
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">{activeProject.title}</h3>
-                  </div>
+                  <h3 className="text-xl font-bold text-white tracking-tight sm:text-3xl">{activeProject.title}</h3>
                 </div>
-              ) : (
-                <div className="relative aspect-[21/9] overflow-hidden rounded-t-2xl">
-                  <img 
-                    src={activeProject.image} 
-                    alt={activeProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-60" />
-                  <div className="absolute bottom-8 left-10 flex items-center gap-6">
-                    <div className="p-4 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-2xl">
-                      {activeProject.icon}
-                    </div>
-                    <h3 className="text-3xl font-bold text-white tracking-tight">{activeProject.title}</h3>
-                  </div>
-                </div>
-              )}
+              </div>
 
               <div className="p-8 md:p-10">
                 <p className="text-xl text-slate-700 mb-8 leading-relaxed font-medium">{activeProject.description}</p>
@@ -476,6 +440,22 @@ const Projects = () => {
                     {activeProject.linkLabel ?? "View Live Simulation"}
                     <ExternalLink size={16} />
                   </a>
+                )}
+
+                {activeProject.images && activeProject.images.length > 1 && (
+                  <div className="mb-10">
+                    <h4 className="text-xs uppercase tracking-widest font-bold text-indigo-600 mb-6">Project Screenshots</h4>
+                    <div className="space-y-4">
+                      {activeProject.images.slice(1).map((src, idx) => (
+                        <img
+                          key={idx}
+                          src={src}
+                          alt={`${activeProject.title} screenshot ${idx + 2}`}
+                          className="w-full h-auto rounded-xl border border-slate-200 shadow-sm"
+                        />
+                      ))}
+                    </div>
+                  </div>
                 )}
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

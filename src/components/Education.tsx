@@ -23,9 +23,9 @@ const Education = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.05 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
           <h2 className="heading-lg">Education</h2>
           <p className="text-slate-600 max-w-2xl leading-relaxed">
@@ -34,7 +34,7 @@ const Education = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {education.map((edu, index) => (
             <motion.div
               key={index}

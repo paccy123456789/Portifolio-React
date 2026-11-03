@@ -8,18 +8,18 @@ const Volunteering = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.05 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h2 className="heading-lg mb-0">Volunteering</h2>
+          <h2 className="heading-lg">Volunteering & Community</h2>
           <p className="text-slate-600 max-w-2xl leading-relaxed">
-            Community engagement and social impact initiatives where I apply my technical and
-            research background to challenges that matter beyond my professional roles.
+            Committed to using my technical background for social impact and community growth.
           </p>
         </motion.div>
 
-        <motion.div
+        <div className="grid grid-cols-1 gap-4 sm:gap-6">
+          <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
@@ -90,6 +90,7 @@ const Volunteering = () => {
             </a>
           </div>
         </motion.div>
+        </div>
       </div>
     </section>
   );
